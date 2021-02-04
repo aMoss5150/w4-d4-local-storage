@@ -4,11 +4,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
   //!!                   SHOW CART ITEM                         //
 
   const showCart = () => {
+    let ul = document.createElement("ul")
 
+      const cartContainer = document.querySelector(".cart.cart__container")
+      cartContainer.appendChild(ul);
 
-
-
-  };
+      for (let i = 0; i < localStorage.length; i++) {
+        let storedItem = localStorage.key(i)
+        let storedValue = localStorage.getItem(storedItem)
+        let displayItem = document.createElement("li");
+        displayItem.innerHTML = `${storedItem}: ${storedValue}`
+        ul.appendChild(displayItem);
+      }
+    };
 
   //!!                STORE ITEM FUNCTION                   //
   const form = document.querySelector('.form.form__container')
@@ -25,13 +33,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // console.log('formQuantity:', formQuantity.value)
     //!!storing item that is say an ARRAY, you would JSON stringify into the value
     form.addEventListener("submit", event => {
-      event.preventDefault();
+      // event.preventDefault();
       let key = formItem.value
       localStorage.setItem(key, formQuantity.value)
       // console.log(localStorage.getItem("Apple"))
 
     });
-
+    showCart();
 
 
   };
@@ -43,7 +51,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // const removeItem = () => {
 
   // };
-
 
   storeItem();
 });
