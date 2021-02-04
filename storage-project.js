@@ -20,10 +20,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
       displayItem.appendChild(removeButton)
       displayItem.setAttribute("id", storedItem)
       removeButton.setAttribute("id", storedItem)
-      console.log('removeButton:', removeButton)
-
-
-      console.log('displayItem:', displayItem)
+      // console.log('removeButton:', removeButton)
+      // console.log('displayItem:', displayItem)
 
       ul.appendChild(displayItem);
     }
@@ -60,11 +58,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
   //!!                    REMOVE ITEM FUNCTION               //
 
   const removeItem = () => {
-
-
-
-
+    let allButtons = document.querySelectorAll("removeButton")
+    console.log(allButtons);
+      removeButton.addEventListener("click", event => {
+          event.preventDefault();
+          if (removedButtom.id === displayItem.id) {
+            event.target.localStorage.removeItem()
+          }
+      })
   };
 
   storeItem();
+  removeItem();
 });
