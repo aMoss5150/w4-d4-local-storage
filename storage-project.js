@@ -6,17 +6,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const showCart = () => {
     let ul = document.createElement("ul")
 
-      const cartContainer = document.querySelector(".cart.cart__container")
-      cartContainer.appendChild(ul);
+    const cartContainer = document.querySelector(".cart.cart__container")
+    cartContainer.appendChild(ul);
 
-      for (let i = 0; i < localStorage.length; i++) {
-        let storedItem = localStorage.key(i)
-        let storedValue = localStorage.getItem(storedItem)
-        let displayItem = document.createElement("li");
-        displayItem.innerHTML = `${storedItem}: ${storedValue}`
-        ul.appendChild(displayItem);
-      }
-    };
+    for (let i = 0; i < localStorage.length; i++) {
+      let removeButton = document.createElement("button")
+      removeButton.innerHTML = "Remove Item"
+
+      let storedItem = localStorage.key(i)
+      let storedValue = localStorage.getItem(storedItem)
+      let displayItem = document.createElement("li");
+      displayItem.innerHTML = `${storedItem}: ${storedValue}   `
+      displayItem.appendChild(removeButton)
+      displayItem.setAttribute("id", storedItem)
+      removeButton.setAttribute("id", storedItem)
+      console.log('removeButton:', removeButton)
+
+
+      console.log('displayItem:', displayItem)
+
+      ul.appendChild(displayItem);
+    }
+  };
 
   //!!                STORE ITEM FUNCTION                   //
   const form = document.querySelector('.form.form__container')
@@ -41,16 +52,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
     showCart();
 
-
   };
+
 
 
 
   //!!                    REMOVE ITEM FUNCTION               //
 
-  // const removeItem = () => {
+  const removeItem = () => {
 
-  // };
+
+
+
+  };
 
   storeItem();
 });
